@@ -35,6 +35,7 @@ package org.springframework.social.google.api.calendar;
  * @author Martin Wink
  */
 public interface CalendarOperations {
+
 	/**
 	 * The identifier for the user's primary calendar.
 	 */
@@ -81,7 +82,16 @@ public interface CalendarOperations {
 	 * @return the new event.
 	 */
 	Event quickAddEvent(String calendarId, String specification, boolean sendNotifications);
-	
+
+	/**
+	 * Inserts a new event.
+	 * @param calendarId The identifier of the target calendar
+	 * @param event The event to insert
+	 * @param sendNotifications Whether to send notifications about the insertion of the event
+	 * @return The given event with updated properties
+	 */
+	Event insertEvent(String calendarId, Event event, boolean sendNotifications);
+
 	/**
 	 * Delete an existing event.
 	 * @param calendarId the identifier of the calendar containing the event. The special
@@ -99,4 +109,5 @@ public interface CalendarOperations {
 	 * @param sendNotifications Whether to send notifications about the update to the event.
 	 */
 	void updateEvent(String calendarId, Event event, boolean sendNotifications);
+
 }

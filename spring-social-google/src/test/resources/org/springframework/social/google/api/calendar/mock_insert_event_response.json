@@ -1,0 +1,56 @@
+{
+  "kind":"calendar#event",
+  "etag":"\"2909408345330000\"",
+  "id":"2j8gq0hdhlmpppiuntuifjasdf",
+  "status":"confirmed",
+  "htmlLink":"https://www.google.com/calendar/event?eid=Mmo4Z3EwaGRobG1wcHBpdW5qYWZ2Yzh1bWdfMjAxNTA1MjhUMTYwMDAasdfZG93ZWxsQG5lcmRlcnkuY29t",
+  "created":"2016-02-05T20:29:32.000Z",
+  "updated":"2016-02-05T20:29:32.720Z",
+  "summary":"Google I/O 2015",
+  "description":"A change to hear more about Google's developer products.",
+  "location":"800 Howard St., San Francisco, CA 94103",
+  "creator":{
+    "email":"email@address.com",
+    "self":true
+  },
+  "organizer":{
+    "email":"email@address.com",
+    "self":true
+  },
+  "start":{
+    "dateTime":"2015-05-28T11:00:00-05:00",
+    "timeZone":"America/Los_Angeles"
+  },
+  "end":{
+    "dateTime":"2015-05-28T19:00:00-05:00",
+    "timeZone":"America/Los_Angeles"
+  },
+  "recurrence":[
+    "RRULE:FREQ=DAILY;COUNT=2"
+  ],
+  "iCalUID":"2j8gq0hdhlmpppiunjafvc8umg@google.com",
+  "sequence":0,
+  "attendees":[
+    {
+      "email":"sbrin@example.com",
+      "responseStatus":"needsAction"
+    },
+    {
+      "email":"lpage@example.com",
+      "responseStatus":"needsAction"
+    }
+  ],
+  "reminders":{
+    "useDefault":false,
+    "overrides":[
+      {
+        "method":"popup",
+        "minutes":10
+      },
+      {
+        "method":"email",
+        "minutes":1440
+      }
+    ]
+  }
+}

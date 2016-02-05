@@ -657,11 +657,9 @@ public class Event extends ApiEntity {
 	private Source source;
 
 	/**
-	 * Constructor protected so instances must be retrieved from Google Calendar
-	 * itself.
-	 * Only some of the possible modifications are currently implemented.
+	 * Public to allow for inserting new events
 	 */
-	protected Event() {
+	public Event() {
 		super();
 		
 		presetBooleansThatDefaultToTrue();
@@ -1016,4 +1014,111 @@ public class Event extends ApiEntity {
 		return this;
 	}
 
+	public void setHtmlLink(String htmlLink) {
+		this.htmlLink = htmlLink;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setColorId(String colorId) {
+		this.colorId = colorId;
+	}
+
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	public void setOrganizer(Organizer organizer) {
+		this.organizer = organizer;
+	}
+
+	public void setStart(DateTimeTimezone start) {
+		this.start = start;
+	}
+
+	public void setEnd(DateTimeTimezone end) {
+		this.end = end;
+	}
+
+	public void setEndTimeUnspecified(Boolean endTimeUnspecified) {
+		this.endTimeUnspecified = endTimeUnspecified;
+	}
+
+	public void setRecurringEventId(String recurringEventId) {
+		this.recurringEventId = recurringEventId;
+	}
+
+	public void setOriginalStartTime(DateTimeTimezone originalStartTime) {
+		this.originalStartTime = originalStartTime;
+	}
+
+	public void setTransparency(Transparency transparency) {
+		this.transparency = transparency;
+	}
+
+	public void setVisibility(Visibility visibility) {
+		this.visibility = visibility;
+	}
+
+	public void setiCalUID(String iCalUID) {
+		this.iCalUID = iCalUID;
+	}
+
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
+
+	public void setAttendees(List<Attendee> attendees) {
+		this.attendees = attendees;
+	}
+
+	public void setAttendeesOmitted(Boolean attendeesOmitted) {
+		this.attendeesOmitted = attendeesOmitted;
+	}
+
+	public void setExtendedProperties(ExtendedProperties extendedProperties) {
+		this.extendedProperties = extendedProperties;
+	}
+
+	public void setHangoutLink(String hangoutLink) {
+		this.hangoutLink = hangoutLink;
+	}
+
+	public void setGadget(Gadget gadget) {
+		this.gadget = gadget;
+	}
+
+	public void setAnyoneCanAddSelf(Boolean anyoneCanAddSelf) {
+		this.anyoneCanAddSelf = anyoneCanAddSelf;
+	}
+
+	public void setGuestsCanModify(Boolean guestsCanModify) {
+		this.guestsCanModify = guestsCanModify;
+	}
+
+	public void setPrivateCopy(Boolean privateCopy) {
+		this.privateCopy = privateCopy;
+	}
+
+	public void setLocked(Boolean locked) {
+		this.locked = locked;
+	}
+
+	public void setReminders(Reminders reminders) {
+		this.reminders = reminders;
+	}
+
+	public void setSource(Source source) {
+		this.source = source;
+	}
 }

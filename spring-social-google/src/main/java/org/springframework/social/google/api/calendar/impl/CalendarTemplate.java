@@ -15,15 +15,7 @@
  */
 package org.springframework.social.google.api.calendar.impl;
 
-import org.springframework.social.google.api.calendar.Calendar;
-import org.springframework.social.google.api.calendar.CalendarListQueryBuilder;
-import org.springframework.social.google.api.calendar.CalendarOperations;
-import org.springframework.social.google.api.calendar.CalendarPage;
-import org.springframework.social.google.api.calendar.DeleteEventBuilder;
-import org.springframework.social.google.api.calendar.Event;
-import org.springframework.social.google.api.calendar.EventListQueryBuilder;
-import org.springframework.social.google.api.calendar.EventPage;
-import org.springframework.social.google.api.calendar.QuickAddEventBuilder;
+import org.springframework.social.google.api.calendar.*;
 import org.springframework.social.google.api.impl.AbstractGoogleApiOperations;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -93,5 +85,14 @@ public class CalendarTemplate extends AbstractGoogleApiOperations implements Cal
 		UpdateEventBuilderImpl builder = new UpdateEventBuilderImpl(CALENDAR_BASE_URL + "/calendars/{0}/events/{1}", calendarId, event.getId());
 		builder.sendNotifications(sendNotifications);
 		restTemplate.put(builder.buildUri(), event);
+	}
+
+	@Override
+	public Event insertEvent(String calendarId, Event event, boolean sendNotifications) {
+		Assert.notNull(calendarId, "CalendarId must not be null");
+		Assert.notNull(event, "Event must not be null");
+		InsertEventBuilderImpl builder = new InsertEventBuilderImpl(CALENDAR_BASE_URL + "/calendars/{0}/events", calendarId);
+		builder.sendNotifications(sendNotifications);
+		return restTemplate.postForObject(builder.buildUri(), event, Event.class);
 	}
 }

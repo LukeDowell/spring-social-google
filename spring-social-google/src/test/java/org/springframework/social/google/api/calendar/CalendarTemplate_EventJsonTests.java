@@ -22,13 +22,19 @@ import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.springframework.social.google.api.AbstractGoogleApiTest;
 import org.springframework.social.google.api.calendar.Event.Attendee;
@@ -1151,5 +1157,25 @@ public class CalendarTemplate_EventJsonTests extends AbstractGoogleApiTest {
 		assertNotNull(event.getStart());
 		assertNotNull(event.getStart().getDateTime());
 		assertNull(event.getStart().getDate());
+	}
+
+	@Test
+	public void insertEvent() throws IOException {
+		mockServer
+				.expect(requestTo("https://www.googleapis.com/calendar/v3/calendars/primary/events"))
+				.andExpect(method(POST))
+				.andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
+				.andRespond(
+						withSuccess(jsonResource("mock_insert_event_response"), APPLICATION_JSON));
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+
+		Event newEvent = objectMapper.readValue(jsonResource("mock_insert_event_request").getFile(), Event.class);
+		assertEquals("Google I/O 2015", newEvent.getSummary());
+
+		Event responseEvent = google.calendarOperations().insertEvent("primary", newEvent, false);
+		assertEquals("2j8gq0hdhlmpppiuntuifjasdf", responseEvent.getId());
+
 	}
 }
